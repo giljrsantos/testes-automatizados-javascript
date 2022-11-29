@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "npx nodemon index.test.ts",
+    "test": "npx nodemon index.test.js",
     "prepare": "husky install"
   },
   "keywords": [],
+  
   "author": "Gilberto Jr",
   "license": "ISC",
   "devDependencies": {
