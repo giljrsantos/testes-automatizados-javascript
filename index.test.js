@@ -37,22 +37,30 @@ process.on('exit', () => callTracker.verify());
      }
 
      // serviceStub => impedir que seja ONLINE
-     const spy = callTracker.calls(1);
+     const spySave = callTracker.calls(1);
      const serviceStub = {
       async save(params){
          // SPY: espiona a função
-         spy(params)
+         spySave(params)
          return `${params.id} saved with success!`
       }
      }
 
      // spyOncreate => impedir que a chamada seja ONLINE
-     const spyOncreate = callTracker.calls(1);
+     const fn = (msg) => {
+        assert.deepStrictEqual(msg.id, params.id, 'id should be the same!')
+        assert.deepStrictEqual(msg.price, params.price, 'price should be the same!')
+        assert.deepStrictEqual(msg.description, params.description.toUpperCase(), 'description should be the same!')
+      }
+      
+
+     const spyOncreate = callTracker.calls(fn, 1);
      const product = new Product({
         onCreate: spyOncreate,
         // aqui fizemos o STUB
         service: serviceStub
      })
      const result = await product.create(params)
+     assert.deepStrictEqual(result, `${params.id} SAVED WITH SUCCESS!`)
      
 }
