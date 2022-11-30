@@ -13,3 +13,10 @@ MOCK:
 
     errado pois oteste esta duplicado
     A => B => C
+
+STUB:
+  - stub serve para interceptor chamadas externas (DB, Api Externa, etc)
+  - garantir que o nosso teste será OFFLINE (sem sistema, sem internet, sem memoria)
+
+SPY:
+  - spy é um tipo de stup, mas é usado para validar como a função foi chamada, com quais parametros e quantas vezes
