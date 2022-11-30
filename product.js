@@ -39,7 +39,6 @@ export default class Product {
       async create(data){
           this.#isValid(data)
           const mappedObject = this.#upperCaseStrings(data)
-          console.log("🚀 ~ file: product.js ~ line 39 ~ Product ~ create ~ mapObject", mappedObject)
           const message = await this.service.save(data)
           this.source.emit('create', mappedObject)
           
